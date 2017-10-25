@@ -1,14 +1,14 @@
 import random
 
-from lib.Helpers import merge_words
+from lib.Vocab import merge_vocab
 from lib.GenerativeFormatter import GenerativeFormatter
 
 import words.Fantasy
 import words.General
 
 d = {}
-d = merge_words(d, words.Fantasy.get_all())
-d = merge_words(d, words.General.get_all())
+d = merge_vocab(d, words.Fantasy.get_all())
+d = merge_vocab(d, words.General.get_all())
 
 patterns = []
 patterns.append("The {attribute} {player} talks to [a/an] {emotion} {civilian}.")
@@ -25,3 +25,7 @@ def generate():
 
 def get_context():
 	return "Fantasy"
+
+if __name__ == "__main__":
+	for i in range(0, 10):
+		print(generate())

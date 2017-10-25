@@ -26,11 +26,11 @@ for i in range(0, iterations):
 print("      ")
 import words.Fantasy
 import words.General
-from lib.Helpers import merge_words
-from lib.Helpers import count_words
+from lib.Vocab import merge_vocab
+from lib.Vocab import count_vocab
 
 d = {}
-d = merge_words(d, words.Fantasy.get_all())
-d = merge_words(d, words.General.get_all())
+d = merge_vocab(d, words.Fantasy.get_all())
+d = merge_vocab(d, words.General.get_all())
 
-print("Dictionairy consists of ", count_words(d), " words and sub-phrases.")
+print("Dictionairy consists of", count_vocab(d), "words and sub-phrases.")

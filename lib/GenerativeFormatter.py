@@ -6,7 +6,7 @@ from string import Formatter
 import random
 
 class GenerativeFormatter(Formatter):
-	def __init__(self, db, num_iterations = 3):
+	def __init__(self, db, num_iterations = 10):
 		Formatter.__init__(self)
 		self.db = db
 		self.iterations = num_iterations
@@ -40,6 +40,11 @@ class GenerativeFormatter(Formatter):
 					continue
 
 			tmp = parts[0] + "a" + parts[1]
+		# Remove [empty] along with any superfluous whitespace
+		while "[empty]" in tmp:
+			parts = tmp.split("[empty]", 1)
+			tmp = parts[0].rstrip()+" "+parts[1].lstrip()
+
 		return tmp
 
 	def expand(self, items, *args, **kwargs):
