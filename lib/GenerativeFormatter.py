@@ -3,12 +3,13 @@ An advanced string formatter for inserting random words into the placeholders.
 """
 
 from string import Formatter
+from .Vocab import combine
 import random
 
 class GenerativeFormatter(Formatter):
 	def __init__(self, db, num_iterations = 10):
 		Formatter.__init__(self)
-		self.db = db
+		self.vocab = db
 		self.iterations = num_iterations
 
 	def format(self, format_string, *args, **kwargs):
@@ -91,11 +92,11 @@ class GenerativeFormatter(Formatter):
 		# {a|b}: set of things that are in either a  or b
 		if '|' in key:
 			firstKey, secondKey = key.split('|', 1)
-			a = set(self.get_value(firstKey, args, kwargs))
-			b = set(self.get_value(secondKey, args, kwargs))
-			return list(a|b) 
+			a = self.get_value(firstKey, args, kwargs)
+			b = self.get_value(secondKey, args, kwargs)
+			return combine(a, b) 
 
-		val = self.db[key]
+		val = self.vocab[key]
 		return val
 
 	def format_field(self, value, format_spec):

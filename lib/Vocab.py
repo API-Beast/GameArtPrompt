@@ -1,14 +1,24 @@
 
 class Vocab(dict):
 	def merge_sets(self, *args):
-		retVal = set()
+		retVal = list()
 		for arg in args:
-			retVal |= set(self[arg])
-		return list(retVal)
+			retVal += self[arg]
+
+		# Remove duplicates
+		unique_list = []
+		[unique_list.append(obj) for obj in retVal if obj not in unique_list]
+		return unique_list
 
 	def copy(self):
 		return Vocab(dict.copy(self))
 		
+
+def combine(a, b):
+	retVal = a + b
+	unique_list = []
+	[unique_list.append(obj) for obj in retVal if obj not in unique_list]
+	return unique_list
 
 def count_vocab(words):
 	if isinstance(words, (list, tuple, set)):

@@ -17,28 +17,42 @@ d["crushing_weapon"] 	= ["axe", "mace", "warhammer", "warclub", "poleaxe", "flai
 d["blade_weapon"]			= ["sword", "dagger", "rapier"]
 d["weapon"] 			= d.merge_sets("ranged_weapon", "thrusting_weapon", "cutting_weapon", "crushing_weapon")
 d["shield"]				= ["shield", "tower shield", "buckler"]
-d["armor"]				= ["boots", "gauntlets", "bracers", "chest armor", "greaves", "helmet"]
-d["clothes"]			= ["robes", "gloves", "shoes", "cloak"]
+
+d["armor_type"]		= ["chainmail", "plated mail", "plate", "plated cloth", "lamellar", "laminar", "scale", "brigandine", "leather"]
+d["armor_material"] = [	"chainmail", "padded cloth", "steel", "bronze", "plate", "plated", "scale", "leather", "unobtainium", "hide",
+												"crystaline", "obsidian", "overgrown", "earthen", ["majestic", "ornamental"], "primitve"]
+d["armor_metal"]  = ["[empty]", "crystaline", "obsidian", "overgrown", "earthen", "majestic", "steel", "bronze"]
+d["chest_piece"]  = ["hauberk", "cuirass", "{armor_metal} plate armor", "brigandine", "{armor_metal} plated mail", "gambeson", "leather jacket", "{armor_metal} laminar chest"]
+d["armor"]				= ["{armor_material} boots", "{armor_material} gauntlets", "{armor_material} bracers", "{chest_piece}", "{armor_material} greaves", "{armor_material} helmet"]
+d["unspec_armor"] = ["boots", "gauntlets", "bracers", "brigandine", "cuirass", "plate armor", "helmet", "greaves"]
+d["clothes"]			= ["pants", "robes", "dress", "jacket", "head-dress", "gloves", ["shoes", "boots"], "cloak"]
 d["jewelry"]			= ["ring", "jewel", "amulet", "bracelet", "necklace"]
-d["misc_magic"] 	= ["book", "scroll", "wand", "staff", "potion", "orb"]
+d["magic_tool"] 	= [["book", "grimoire"], "wand", "staff", ["orb", "gemstone"]]
 d["curio"]				= ["eye", "bone", "jaw", "hammer", "anvil", "chains"]
-d["enchantable"] 	= d.merge_sets("jewelry", "weapon", "armor", "misc_magic", "curio", "clothes")
+d["enchantable"] 	= d.merge_sets("jewelry", "weapon", "armor", "magic_tool", "curio", "clothes")
 
-d["species"] = ["demon", "orc", "divine", "undead", "life", "magic"]
-d["enchanted_weapon"] = [	"Penetrating {thrusting_weapon}", "Flaming {cutting_weapon}", "Electocuting {cutting_weapon}",
-													"Molten {crushing_weapon}", "Thunderous {crushing_weapon}", "{species.capitalize()} seeker {ranged_weapon}",
-													"Vampiric {blade_weapon}", "Venomous {blade_weapon}", "Poison-tipped {ranged_weapon}", "{crushing_weapon.capitalize()} of slaughter"]
+d["species"] = ["demon", "orc", "god", "undead", "life", "magic"]
+d["enchanted_weapon"] = [	"{cutting_weapon} of bursting flames", "Electocuting {cutting_weapon}", "{crushing_weapon} of slaughter",
+													"Molten {crushing_weapon}", "Thunderous {crushing_weapon}", "{species}seeker {ranged_weapon}",
+													"Vampiric {blade_weapon}", "Venomous {blade_weapon}", "Poison-tipped {ranged_weapon}", "Soul-eating {weapon}",
+													"Cursed {weapon}", "Blessed {weapon}", "Anti-magic {weapon}"]
 
-d["social_item"]			= d.merge_sets("clothes", "armor", "jewelry")
-d["enchanted_social"] = ["Charming {social_item}", "{social_item.capitalize()} of desire", "{social_item.capitalize()} of wealth", "{social_item.capitalize()} of negotiation", "{social_item.capitalize()} of precision", "{social_item.capitalize()} of mastery"]
+d["enchanted_armor"] = [	"{clothes|unspec_armor} of the Bull", "Nightmare {unspec_armor}",
+													"Divine {unspec_armor}", "Cursed {unspec_armor}",
+													"Magic circuit {unspec_armor}", "Molten core {unspec_armor}",
+													"Reflective {shield}", "Spiked {shield}", "Ornamental {shield}"]
 
-d["enchanted_armor"] = ["Warding {armor}", "Negating {armor}", "Divine {armor}", "Demonic {armor}", "Chaos {armor}", "Living {armor}", "Obsidian {armor}", "Steadfast {armor}"]
-d["legendary_items"] = ["{misc_magic|curio|jewelry.capitalize()} of power", "{mystic_god.capitalize()} {misc_magic|curio}", "Holy {misc_magic|curio} of the {good_god}", "Unholy {misc_magic|curio} of the {evil_god}"]
 
-d["curse"]				= ["weakness", "dread", "hunger", "pain", "sin", "blindness", "greed"]
-d["cursed_item"] 	= ["{weapon.capitalize()} of imprecision", "Corrupting {enchantable}", "{enchantable.capitalize()} of {curse}"]
+d["social_item"]			= d.merge_sets("clothes", "jewelry")
+d["enchanted_social"] = ["Alluring {social_item}", "{social_item} of the Scholar", "{social_item} of the Scroundel", "{social_item} of the Beggar", "Noble {social_item}", "Master-craft {social_item}"]
 
-patterns = ["{enchantable.capitalize()} of {symbolism_of}", "{cursed_item}", "{enchanted_social}", "{legendary_items}", "{enchanted_weapon}", "{enchanted_armor}"]
+d["enchanted_magic_tool"] = [	"{magic_tool} of the Scorching Flame", "{magic_tool} of Creeping Poison", "{magic_tool} of Chilling Frost",
+															"{magic_tool} of Demon Summoning", "{magic_tool} of Eternal Servitude", "{magic_tool} of Divine Light",
+															"{magic_tool} of Eternal Life", "{magic_tool} of Undeath", "{magic_tool} of Corrupting Blight",
+															"{magic_tool} of the Protective Arts", "{magic_tool} of Thunderous Lightning", "{magic_tool} of Raging Storms",
+															"{magic_tool} of Soul Harvest", "{magic_tool} of Cleansing Waters", "Reinforcing {magic_tool}"]
+
+patterns = ["{armor}", "{enchanted_armor}", "{enchanted_magic_tool}", "{enchanted_social}", "{enchanted_weapon}"]
 
 
 
@@ -46,7 +60,7 @@ def generate():
 	formatter = GenerativeFormatter(d)
 	pattern = random.choice(patterns)
 	result = formatter.format(pattern)
-	return result
+	return result.title()
 
 def get_context():
 	return "#Item"

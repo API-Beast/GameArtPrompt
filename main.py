@@ -20,7 +20,7 @@ for i in range(0, iterations):
 	generator = impu.module_from_spec(spec)
 	spec.loader.exec_module(generator)
 
-	print(generator.generate())
+	print(generator.get_context().rjust(12)+":", generator.generate())
 
 
 print("      ")
