@@ -9,7 +9,7 @@ themes = glob("Gen*.py")
 #parser = ArgumentParser("Generate a game art prompt.")
 #parser.add_argument("")
 
-iterations = 10
+iterations = 50
 if len(argv) > 1:
 	iterations = int(argv[1])
 

@@ -21,7 +21,7 @@ d["shield"]				= ["shield", "tower shield", "buckler"]
 d["armor_type"]		= ["chainmail", "plated mail", "plate", "plated cloth", "lamellar", "laminar", "scale", "brigandine", "leather"]
 d["armor_material"] = [	"chainmail", "padded cloth", "steel", "bronze", "plate", "plated", "scale", "leather", "unobtainium", "hide",
 												"crystaline", "obsidian", "overgrown", "earthen", ["majestic", "ornamental"], "primitve"]
-d["armor_metal"]  = ["[empty]", "crystaline", "obsidian", "overgrown", "earthen", "majestic", "steel", "bronze"]
+d["armor_metal"]  = ["[none]", "crystaline", "obsidian", "overgrown", "earthen", "majestic", "steel", "bronze"]
 d["chest_piece"]  = ["hauberk", "cuirass", "{armor_metal} plate armor", "brigandine", "{armor_metal} plated mail", "gambeson", "leather jacket", "{armor_metal} laminar chest"]
 d["armor"]				= ["{armor_material} boots", "{armor_material} gauntlets", "{armor_material} bracers", "{chest_piece}", "{armor_material} greaves", "{armor_material} helmet"]
 d["unspec_armor"] = ["boots", "gauntlets", "bracers", "brigandine", "cuirass", "plate armor", "helmet", "greaves"]
@@ -36,8 +36,8 @@ d["enchanted_weapon"] = [	"{cutting_weapon} of bursting flames", "Electocuting {
 													"Molten {crushing_weapon}", "Thunderous {crushing_weapon}", "{species}seeker {ranged_weapon}",
 													"Vampiric {blade_weapon}", "Venomous {blade_weapon}", "Poison-tipped {ranged_weapon}", "Soul-eating {weapon}",
 													"Cursed {weapon}", "Blessed {weapon}", "Anti-magic {weapon}"]
-
-d["enchanted_armor"] = [	"{clothes|unspec_armor} of the Bull", "Nightmare {unspec_armor}",
+													
+d["enchanted_armor"] 	= [	"{clothes|unspec_armor} of the Bull", "Nightmare {unspec_armor}",
 													"Divine {unspec_armor}", "Cursed {unspec_armor}",
 													"Magic circuit {unspec_armor}", "Molten core {unspec_armor}",
 													"Reflective {shield}", "Spiked {shield}", "Ornamental {shield}"]

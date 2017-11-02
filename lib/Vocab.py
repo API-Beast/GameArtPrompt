@@ -1,9 +1,19 @@
 
 class Vocab(dict):
+	def lookup(self, key):
+		keys = key.split(".")
+		context = self
+		for k in keys:
+			context = context[k]
+		return context
+
 	def merge_sets(self, *args):
 		retVal = list()
 		for arg in args:
-			retVal += self[arg]
+			if isinstance(arg, (list, tuple)):
+				retVal += arg
+			else:
+				retVal += self.lookup(arg)
 
 		# Remove duplicates
 		unique_list = []

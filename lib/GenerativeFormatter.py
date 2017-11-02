@@ -4,13 +4,18 @@ An advanced string formatter for inserting random words into the placeholders.
 
 from string import Formatter
 from .Vocab import combine
+from collections import ChainMap
 import random
 
 class GenerativeFormatter(Formatter):
 	def __init__(self, db, num_iterations = 10):
 		Formatter.__init__(self)
-		self.vocab = db
+		self.vocabs = ChainMap(db)
+		self.context = None
 		self.iterations = num_iterations
+
+	def set_vocab(self, *maps):
+		self.vocabs = ChainMap(*maps)
 
 	def format(self, format_string, *args, **kwargs):
 		result = format_string
@@ -41,10 +46,15 @@ class GenerativeFormatter(Formatter):
 					continue
 
 			tmp = parts[0] + "a" + parts[1]
-		# Remove [empty] along with any superfluous whitespace
-		while "[empty]" in tmp:
-			parts = tmp.split("[empty]", 1)
-			tmp = parts[0].rstrip()+" "+parts[1].lstrip()
+		# Remove [none] along with any superfluous whitespace
+		while "[none]" in tmp:
+			parts = tmp.split("[none]", 1)
+			a = parts[0].rstrip()
+			b = parts[1].lstrip()
+			if len(a) == 0:
+				tmp = b
+			else:
+				tmp = a+" "+b
 
 		return tmp
 
@@ -69,6 +79,18 @@ class GenerativeFormatter(Formatter):
 			return Formatter.get_field(self, field_name, args, kwargs)
 
 	def get_value(self, key, args, kwargs):
+		if key.startswith("#"):
+			return self.context[key[1:]]
+
+		if key.startswith("~"):
+			val = self.get_value(key[1:], args, kwargs)
+			if isinstance(val, dict):
+				val = list(val.values())
+			if isinstance(val, (list, tuple)):
+				val = random.choice(val)
+			self.context = self.vocabs[val]
+			return val
+
 		if key in kwargs:
 			return kwargs[key]
 
@@ -96,8 +118,7 @@ class GenerativeFormatter(Formatter):
 			b = self.get_value(secondKey, args, kwargs)
 			return combine(a, b) 
 
-		val = self.vocab[key]
-		return val
+		return self.vocabs[key]
 
 	def format_field(self, value, format_spec):
 		val = value

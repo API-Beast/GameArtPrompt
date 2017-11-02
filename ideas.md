@@ -12,7 +12,13 @@
 
 #Scene
 
+A cursed forest, creeping with XXX
+A blessed forest, inhabited by XXX
+
+
 #CharacterDesign
+
+Succubus
 
 #CreatureDesign
 
