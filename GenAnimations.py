@@ -39,10 +39,14 @@ d["pattern"].append("Animation of [a/an] {character} launching [a/an] {attack_de
 #d["pattern"].append("Animation of [a/an] {specific_animation}.")
 d["pattern"].append("Special effects for {magic_spell}.")
 
+formatter = GenerativeFormatter(d)
+
 def generate():
-	formatter = GenerativeFormatter(d)
 	result = formatter.format("{pattern}")
 	return result
+
+def count_permutations():
+	return formatter.count_permutations("{pattern}")
 
 def get_context():
 	return "#Animation"

@@ -5,7 +5,9 @@ An advanced string formatter for inserting random words into the placeholders.
 from string import Formatter
 from .Vocab import combine
 from collections import ChainMap
+
 import random
+import re
 
 class GenerativeFormatter(Formatter):
 	def __init__(self, db, num_iterations = 10):
@@ -58,6 +60,21 @@ class GenerativeFormatter(Formatter):
 
 		return tmp
 
+	def count_permutations(self, format):
+		if isinstance(format, str):
+			fields = [field[1] for field in self.parse(format) if field[1]]
+			count = 1
+			for field in fields:
+				count *= self.count_permutations(self.get_field(field, [], {}))
+			return count
+		elif isinstance(format, (list, tuple)):
+			count = 0
+			for entry in format:
+				count += self.count_permutations(entry)
+			return count
+		return 1
+
+
 	def expand(self, items, *args, **kwargs):
 		result = []
 		for item in items:
@@ -79,18 +96,6 @@ class GenerativeFormatter(Formatter):
 			return Formatter.get_field(self, field_name, args, kwargs)
 
 	def get_value(self, key, args, kwargs):
-		if key.startswith("#"):
-			return self.context[key[1:]]
-
-		if key.startswith("~"):
-			val = self.get_value(key[1:], args, kwargs)
-			if isinstance(val, dict):
-				val = list(val.values())
-			if isinstance(val, (list, tuple)):
-				val = random.choice(val)
-			self.context = self.vocabs[val]
-			return val
-
 		if key in kwargs:
 			return kwargs[key]
 

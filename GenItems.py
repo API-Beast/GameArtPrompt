@@ -57,17 +57,18 @@ d["alchemy_consumable"] += ["Creeping poison vial", "Lethal poison vial", "Immob
 d["utility_items"] = ["{jewelry} of Teleportation", "{jewelry|unspec_armor|shield} of {elemental} Resistance"]
 
 patterns = ["{armor}", "{enchanted_armor}", "{enchanted_magic_tool}", "{enchanted_social}", "{enchanted_weapon}", "{alchemy_consumable}"]
-
-
+formatter = GenerativeFormatter(d)
 
 def generate():
-	formatter = GenerativeFormatter(d)
 	pattern = random.choice(patterns)
 	result = formatter.format(pattern)
 	return result.title()
 
 def get_context():
 	return "#Item"
+
+def count_permutations():
+	return formatter.count_permutations(patterns)
 
 if __name__ == "__main__":
 	for i in range(0, 20):
