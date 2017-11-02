@@ -4,12 +4,8 @@ from lib.GenerativeFormatter import GenerativeFormatter
 from lib.Vocab import merge_vocab
 from lib.Vocab import Vocab
 
-import words.Fantasy
-import words.General
-
 d = Vocab()
-d = merge_vocab(d, words.Fantasy.get_all())
-d = merge_vocab(d, words.General.get_all())
+
 d["ranged_weapon"] 		= ["bow", "crossbow", "javeline"]
 d["thrusting_weapon"] 	= ["dagger", "sword", "rapier", "spear", "halberd", "claws"]
 d["cutting_weapon"] 	= ["sword", "axe", "halberd", "poleaxe", "claws"]
@@ -29,12 +25,13 @@ d["clothes"]			= ["pants", "robes", "dress", "jacket", "head-dress", "gloves", [
 d["jewelry"]			= ["ring", "jewel", "amulet", "bracelet", "necklace"]
 d["magic_tool"] 	= [["book", "grimoire"], "wand", "staff", ["orb", "gemstone"]]
 d["curio"]				= ["eye", "bone", "jaw", "hammer", "anvil", "chains"]
+d["elemental"]		= ["fire", "physical", "cold", "poison", "lightning", "elemental", "unholy", "holy"]
 d["enchantable"] 	= d.merge_sets("jewelry", "weapon", "armor", "magic_tool", "curio", "clothes")
 
 d["species"] = ["demon", "orc", "god", "undead", "life", "magic"]
 d["enchanted_weapon"] = [	"{cutting_weapon} of bursting flames", "Electocuting {cutting_weapon}", "{crushing_weapon} of slaughter",
 													"Molten {crushing_weapon}", "Thunderous {crushing_weapon}", "{species}seeker {ranged_weapon}",
-													"Vampiric {blade_weapon}", "Venomous {blade_weapon}", "Poison-tipped {ranged_weapon}", "Soul-eating {weapon}",
+													"Vampiric {blade_weapon}", "Venomous {blade_weapon}", "Poison-tipped {ranged_weapon}", "Demonic {weapon}",
 													"Cursed {weapon}", "Blessed {weapon}", "Anti-magic {weapon}"]
 													
 d["enchanted_armor"] 	= [	"{clothes|unspec_armor} of the Bull", "Nightmare {unspec_armor}",
@@ -52,7 +49,14 @@ d["enchanted_magic_tool"] = [	"{magic_tool} of the Scorching Flame", "{magic_too
 															"{magic_tool} of the Protective Arts", "{magic_tool} of Thunderous Lightning", "{magic_tool} of Raging Storms",
 															"{magic_tool} of Soul Harvest", "{magic_tool} of Cleansing Waters", "Reinforcing {magic_tool}"]
 
-patterns = ["{armor}", "{enchanted_armor}", "{enchanted_magic_tool}", "{enchanted_social}", "{enchanted_weapon}"]
+d["substance"] = ["potion", "tinkture", "vial", "powder", "mushroom", "root"]
+d["scroll"] = ["scroll"]
+d["alchemy_consumable"]  = ["Healing {substance}", "Revitalizing {substance}", "Mana {substance}", "{substance} of Bulls Strength"]
+d["alchemy_consumable"] += ["Creeping poison vial", "Lethal poison vial", "Immobilizing poison vial", "Weakening poison vial", "Vial of acid"]
+
+d["utility_items"] = ["{jewelry} of Teleportation", "{jewelry|unspec_armor|shield} of {elemental} Resistance"]
+
+patterns = ["{armor}", "{enchanted_armor}", "{enchanted_magic_tool}", "{enchanted_social}", "{enchanted_weapon}", "{alchemy_consumable}"]
 
 
 

@@ -3,12 +3,7 @@ import random
 from lib.Vocab import merge_vocab
 from lib.GenerativeFormatter import GenerativeFormatter
 
-import words.Fantasy
-import words.General
-
 d = {}
-d = merge_vocab(d, words.Fantasy.get_all())
-d = merge_vocab(d, words.General.get_all())
 d["manmade_style"] 	= [	"Futuristic", "Fantasy", "Military", "Cyberpunk", "Steampunk", "Historic", "Macabre", "Modern",
 												"Primitive", "Ancient", "Mystic", "Ornamental", "Overgrown"]
 d["manmade_prop"] = ["Crates", "Pottery", "Barrels", "Bucket", "Machinery", "Chair", "Bench", "Sign", "Chest", "Light Source", "Fence"]

@@ -1,4 +1,4 @@
-
+# At the moment these aren't really used
 def get_all():
 	d = {}
 	d["emotion"] = ["angry", "frightened", "sad", "disgusted", "suprised", "trusting", "confused", "flirtatious"]
