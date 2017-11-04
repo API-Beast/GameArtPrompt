@@ -2,6 +2,7 @@ from glob import glob
 import random
 import importlib.util as impu
 from sys import argv
+import sys
 import math
 
 themes = glob("Gen*.py")
@@ -18,7 +19,7 @@ generators = [load_generator(theme) for theme in themes]
 #parser = ArgumentParser("Generate a game art prompt.")
 #parser.add_argument("")
 
-iterations = 25
+iterations = 50
 prompts = []
 if len(argv) > 1:
 	iterations = int(argv[1])
@@ -26,10 +27,13 @@ if len(argv) > 1:
 for i in range(0, iterations):
 	generator = random.choice(generators)
 	prompt = generator.get_context().rjust(12)+": "+generator.generate()
-	print(prompt)
+	if iterations < 1000:
+		print(prompt)
 	prompts.append(prompt)
-	if i > 100000 and i%100000 == 0:
-		print(str(round(i/iterations*100, 3))+"%")
+	if i > 1 and i%1000 == 0:
+		progress = int(i/iterations*100)
+		sys.stdout.write("\r[{}] {}%".format('#'*int(progress/5) + ' '*(20-int(progress/5)), progress))
+		sys.stdout.flush()
 
 
 print("      ")

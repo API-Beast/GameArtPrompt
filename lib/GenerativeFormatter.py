@@ -60,18 +60,42 @@ class GenerativeFormatter(Formatter):
 
 		return tmp
 
-	def count_permutations(self, format):
+	def count_permutations(self, format, debug=False, recursion=0):
+		
+		indent = recursion*" "
+		def debug_msg(*args):
+			if debug:
+				print(indent, *args)
+
 		if isinstance(format, str):
 			fields = [field[1] for field in self.parse(format) if field[1]]
 			count = 1
-			for field in fields:
-				count *= self.count_permutations(self.get_field(field, [], {}))
+			if len(fields):
+				debug_msg(indent, format, "{")
+				for field in fields:
+					count *= self.count_permutations(self.get_field(field, [], {})[0], debug, recursion+1)
+				debug_msg(indent, "} *", count)
+			else:
+				debug_msg(indent, format)
 			return count
+
 		elif isinstance(format, (list, tuple)):
 			count = 0
+			debug_msg(indent, "[", type(format).__name__, "]{")
 			for entry in format:
-				count += self.count_permutations(entry)
+				count += self.count_permutations(entry, debug, recursion+1)
+			debug_msg(indent, "} +", count)
 			return count
+
+		elif isinstance(format, dict):
+			count = 0
+			debug_msg(indent, "[", type(format).__name__, "]{")
+			for entry in format.values():
+				count += self.count_permutations(entry, debug, recursion+1)
+			debug_msg(indent, "} +", count)
+			return count
+
+		debug_msg(indent, format)
 		return 1
 
 
@@ -122,6 +146,12 @@ class GenerativeFormatter(Formatter):
 			a = self.get_value(firstKey, args, kwargs)
 			b = self.get_value(secondKey, args, kwargs)
 			return combine(a, b) 
+
+		if key[-1] == '?':
+			return ['[none]', key[:-1]]
+
+		if key[-1] == '*':
+			return [key[:-1]]
 
 		return self.vocabs[key]
 

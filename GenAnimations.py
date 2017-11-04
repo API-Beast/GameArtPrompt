@@ -23,10 +23,10 @@ d["breath_weapon"] = ["fire-breathing", "ice-breathing", "acid-spewing"]
 d["specific_animation"] = ["{breath_weapon} creature", "{undead} rising out of it's grave"]
 d["bolt_element"] = ["fiery", "ice", "lightning", "necrotic"]
 d["attunment"] = ["holy", "elemental", ["unholy", "dark", "corrupted"]]
-d["magic_spell"] = 	["a cleansing light spell", "a burning inferno", "opening a portal", "an teleportation spell",
-										"the summoning of a demon", "a protective aura", "a petrifying gaze", "a dust storm",
-										"[a/an] {bolt_element} bolt", "[a/an] {bolt_element} blast", "[a/an] barrage of {bolt_element}", "telekinesis",
-										"a blast of wind", "a crushing tsunami", "a undead summoning spell", "[a/an] {attunment} healing spell"]
+d["magic_spell"] = 	["Cleansing Light", "Burning Inferno", "Portal", "Teleportation",
+										"Summon Demon", "Protective Aura", "Petrifying Gaze", "Dust Devil",
+										"{bolt_element.capitalize()} Bolt", "{bolt_element.capitalize()} Blast", "{bolt_element.capitalize()} Barrage", "Telekinesis",
+										"Tsunami", "Summon Undead", "{attunment.capitalize()} Healing"]
 d["attack_desc"] = ["precise attack", "fast attack", "brutal attack", "barrage"]
 
 d["character_detail"] = ["heavily armored {character}", "{character} armed with {weapon}", "{characteristic} {character}"]
@@ -37,7 +37,7 @@ d["pattern"].append("{generic_action.capitalize()} animaton for [a/an] {characte
 d["pattern"].append("{generic_action.capitalize()} animaton for [a/an] {creature}.")
 d["pattern"].append("Animation of [a/an] {character} launching [a/an] {attack_desc} with {weapon}.")
 #d["pattern"].append("Animation of [a/an] {specific_animation}.")
-d["pattern"].append("Special effects for {magic_spell}.")
+d["pattern"].append("\"{magic_spell}\" Spell")
 
 formatter = GenerativeFormatter(d)
 
@@ -45,8 +45,8 @@ def generate():
 	result = formatter.format("{pattern}")
 	return result
 
-def count_permutations():
-	return formatter.count_permutations("{pattern}")
+def count_permutations(*args):
+	return formatter.count_permutations("{pattern}", *args)
 
 def get_context():
 	return "#Animation"

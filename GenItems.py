@@ -7,7 +7,7 @@ from lib.Vocab import Vocab
 d = Vocab()
 
 d["ranged_weapon"] 		= ["bow", "crossbow", "javeline"]
-d["thrusting_weapon"] 	= ["dagger", "sword", "rapier", "spear", "halberd", "claws"]
+d["thrusting_weapon"] = ["dagger", "sword", "rapier", "spear", "halberd", "claws"]
 d["cutting_weapon"] 	= ["sword", "axe", "halberd", "poleaxe", "claws"]
 d["crushing_weapon"] 	= ["axe", "mace", "warhammer", "warclub", "poleaxe", "flail", "quarterstaff"]
 d["blade_weapon"]			= ["sword", "dagger", "rapier"]
@@ -54,9 +54,15 @@ d["scroll"] = ["scroll"]
 d["alchemy_consumable"]  = ["Healing {substance}", "Revitalizing {substance}", "Mana {substance}", "{substance} of Bulls Strength"]
 d["alchemy_consumable"] += ["Creeping poison vial", "Lethal poison vial", "Immobilizing poison vial", "Weakening poison vial", "Vial of acid"]
 
-d["utility_items"] = ["{jewelry} of Teleportation", "{jewelry|unspec_armor|shield} of {elemental} Resistance"]
+d["utility_item"] 	= ["{jewelry} of Teleportation", "{jewelry|unspec_armor|shield} of {elemental} Resistance"]
+d["food"]						= ["Sausage", "Chicken Wing", "Bread", "Milk", "Cheese", "Eggs", "Apricot", "Apple", "Orange", "Chocolate", "Ice Cream", "Pie", "Citrus", "Onion", "Garlic", "Pumpkin", "Tomato", "Lobster", "Cucumber", "Steak", "Kebab", "Potato", "Cake", "Celery"]
+d["metal"]					= ["Steel", "Iron", "Copper", "Gold", "Silver", "Bronze", "Mythril"]
+d["raw_metal"]			= ["Iron", "Copper", "Gold", "Silver", "Mythril"]
+d["stone"]					= ["Sandstone", "Marble", "Limestone", "Granite", "Pbsidian"]
+d["crafting_item"] 	= ["{metal} Ingot", "{raw_metal} Ore", "Wooden Log", "Wooden Stick", "Wood Plank", "Slab of {stone}"]
 
-patterns = ["{armor}", "{enchanted_armor}", "{enchanted_magic_tool}", "{enchanted_social}", "{enchanted_weapon}", "{alchemy_consumable}"]
+patterns 	= ["{armor}", "{enchanted_armor}", "{enchanted_magic_tool}", "{enchanted_social}", "{enchanted_weapon}"]
+patterns += ["{alchemy_consumable}", "{utility_item}", "{food}", "{crafting_item}"]
 formatter = GenerativeFormatter(d)
 
 def generate():
@@ -67,8 +73,8 @@ def generate():
 def get_context():
 	return "#Item"
 
-def count_permutations():
-	return formatter.count_permutations(patterns)
+def count_permutations(*args):
+	return formatter.count_permutations(patterns, *args)
 
 if __name__ == "__main__":
 	for i in range(0, 20):

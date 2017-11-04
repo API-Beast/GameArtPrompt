@@ -87,6 +87,8 @@ d["species"]["small"] 		= ["Goblin", "Gnome", "Dwarf", "Kobold", "Halfling"]
 
 s["generic"]["pattern"] = ["{species} {profession}"]
 
+# -----------------------------------------
+
 formatter = GenerativeFormatter(d)
 
 def generate():
@@ -98,11 +100,11 @@ def generate():
 def get_context(): 
 	return "#Character"
 
-def count_permutations():
+def count_permutations(*args):
 	i = 0
 	for faction in list(s.keys()):
 		formatter.set_vocab(s[faction], d, s)
-		i += formatter.count_permutations("{pattern}")
+		i += formatter.count_permutations("{pattern}", *args)
 	return i
 
 if __name__ == "__main__":
