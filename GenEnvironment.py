@@ -38,5 +38,5 @@ def count_permutations(*args):
 	return formatter.count_permutations("{pattern}", *args)
 
 if __name__ == "__main__":
-	for i in range(0, 10):
+	for i in range(0, 20):
 		print(generate())

@@ -2,10 +2,12 @@
 class Vocab(dict):
 	def lookup(self, key):
 		keys = key.split(".")
-		context = self
+		val = self
 		for k in keys:
-			context = context[k]
-		return context
+			val = val[k]
+		if isinstance(val, dict):
+			val = list(val.values())
+		return val
 
 	def merge_sets(self, *args):
 		retVal = list()

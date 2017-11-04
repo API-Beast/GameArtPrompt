@@ -14,86 +14,45 @@ d["arctype"] = ["Warrior", "Diplomat", "Soldier", "General", "Merchant"]
 
 d["level"] = [["Elite", "Armored"], "[none]"]
 
-s = Vocab()
+d["mount"] = ["Horse", "Lizard", "Raptor", "Griphon", "Dragon"]
 
-# -------------------------------------
-s["undead"] = Vocab()
-s["undead"]["unit"] = ["Archer", "Rider", "Knight", "Assassin", "Soldier", "Thrall", "Ghoul", "Zombie", "Executioner", "Lieutenant"]
-s["undead"]["essence"] = ["Soulstarved", "Embalmed", "Cursed", "Tormented", "Creeping Death", "Pestilence", "Spectral", "Shadowspectre", "Undying", "Fleshstitcher", "Bonecarver", "Soulswamp", "Iron Legion", "Corpserot"]
-s["undead"]["special"] = ["Necromancer", "Lich", "Golem", "Revenant"]
-
-s["undead"]["pattern"] = ["Undead {essence} {unit}", "{essence} {special}"]
-
-
-# --------------------------------------
-s["demonic"] = Vocab()
-s["demonic"]["demon_unit"] = ["Warlord", "Infiltrator", "Assassin", "Commander", "Torturer", "Beastmaster", "Warrior", "Raider"]
-s["demonic"]["demonic_unit"] = ["Swarmer", "Grunt", "Juggernaut", "Behemoth"]
-s["demonic"]["worshipper"] = ["Summoner", "Warlock", "Cultist", "Conjurer", "High Priest"]
-s["demonic"]["species"] = ["Succubus", "Imp"]
-s["demonic"]["assoc"] = ["Sin", "Greed", "Lust", "Horror", "Hysteria", "the Blasphemous", "Discord", "Mischief", "Sloth", "Envy", "Pride", "Gluttony", "Domination", "War", "Treason", "Terror", "Wrath", "Temptation", "Nightmare"]
-
-s["demonic"]["pattern"] = ["{level} Demon {demon_unit} of {assoc}", "{level} Demonic {demonic_unit}", "{worshipper} of {assoc}"]
-
-
-# ---------------------------------------
-s["orcish"] = Vocab()
-s["orcish"]["unit"] = ["Warlord", "Grunt", "Archer", "Torturer", "Raider", "Assassin", "Shaman", "Warlock", "Warrior", "Slaver", "Javelin Thrower", "Berserker", "Juggernaut", "Shieldbearer", "Beastmaster"]
-s["orcish"]["tribe"] = ["Iceblood", "Infernal", "Firebringer", "Steelclad", "Deathraiser", "Warborn", "Shadowstalker"]
-
-s["orcish"]["pattern"] = ["{level|tribe} Orc {unit}", "{tribe} Orc {unit}"]
-
-
-# ---------------------------------------
-s["divine"] = Vocab()
-s["divine"]["unit"] = ["Judge", "Executioner", "Commander", "Seraphim", "Fanatic", "Scribe", "Guardian", "Paladin"]
-s["divine"]["assoc"] = ["Purifying Flame", "Last Stand", "Order"]
-
-s["divine"]["pattern"] = ["Divine {unit} of The {assoc}", "Corrupted Divine {unit}"]
-
-
-# ---------------------------------------
-s["elven"] = Vocab()
-s["elven"]["unit"] = ["Noble", "Lord", "Ranger", "Ascended", "High Priest", "Runesmith", "Shieldbearer", "Alchemist", "Arcanist", "Assassin"]
-
-s["elven"]["dark_unit"] = s["elven"].merge_sets("unit", ["Torturer", "Slaver", "Infiltrator", "Mistress"])
-s["elven"]["wood_unit"] = s["elven"].merge_sets("unit", ["Hunter", "Druid", "Beastmaster", "Shaman", "Warlock"])
-s["elven"]["high_unit"] = s["elven"].merge_sets("unit", ["Paladin", "Chavalier"])
-
-s["elven"]["pattern"] = ["Dark Elf {dark_unit}", "Wood Elf {wood_unit}", "High Elf {high_unit}"]
-
-
-# -----------------------------------------
-s["generic"] = Vocab()
-s["generic"]["element"] = ["Holy", "Corrupted"]
-
-d["mount"] = ["Horse", "Lizard", "Dinosaur", "Griphon", "Dragon"]
+d["horde_tribe"] = ["Iceblood", "Infernal", "Firebringer", "Steelclad", "Deathraiser", "Warborn", "Shadowstalker"]
+d["demonic_assoc"] = ["Sin", "Greed", "Lust", "Horror", "Hysteria", "the Blasphemous", "Discord", "Mischief", "Sloth", "Envy", "Pride", "Gluttony", "Domination", "War", "Treason", "Terror", "Wrath", "Temptation", "Nightmare"]
 
 d["profession"] = {}
-d["profession"]["ranged"]		= ["Ranger", "Marksman", "Bowman"]
-d["profession"]["melee"] 		= ["Militia", "City Guard", "Hoplite", "Spearman", "Paladin", "Swordsman", "Pikeman", "Knight", "Juggernaut"]
-d["profession"]["mounted"] 	= ["Chavalier", "Knight", "{mount}rider", "Cataphract"]
-d["profession"]["civilian"] = ["Lumberjack", ["Huntsman", "Hunter"], "Farmer", "Alchemist", "Smith", "Noble"]
-d["profession"]["noble"]		= ["Duke", "King", "Count", "Prince"]
-d["profession"]["command"]	= ["Commander", "General"]
-d["profession"]["magician"] = ["Enchanter", "Illusionist", "Elementalist", "Shaman", "Runesmith", "Cleric", "Priest", "Druid"]
+d["profession"]["civilian"]  = ["Lumberjack", "Farmer", "Alchemist", "Smith", "Engineer"]
+d["profession"]["ranged"]    = ["Ranger", "Marksman", "Bowman", "Javelin Thrower"]
+d["profession"]["melee"]     = ["Berserker", "Militia", "City Guard", "Hoplite", "Spearman", "Paladin", "Swordsman", "Pikeman", "Knight", "Juggernaut"]
+d["profession"]["sneaky"]    = ["Rogue", "Assassin", "Ranger", "Scout", "Hunter"]
+d["profession"]["noble"]     = [["King", "Queen"], ["Prince", "Princess"], "Noble"]
+d["profession"]["command"]   = ["Commander", "General"]
+d["profession"]["twisted"]   = ["Warlord", "Infiltrator", "Assassin", "Torturer", "Executioner", "Mistress", "Raider", "Slaver", "Warlock", "Necromancer", "Cultist"]
+d["profession"]["primitive"] = ["Berserker", "Shaman", "Druid", "Beastmaster", "Chieftain", "Summoner"]
+d["profession"]["arcane"]    = ["Arcanist", "Enchanter", "Illusionist", "Elementalist", "Runesmith", "Summoner", "Conjurer"]
+d["profession"]["rightous"]  = ["Cleric", "Priest", "Paladin", "Knight", "Preacher"]
 
 d["species"] = {}
-d["species"]["special"] 	= ["Avian", "Celestial", "Sylvan", "Lizard", "Merman", "Demonic", "Naga", "Cat"]
-d["species"]["scrawny"] 	= ["Half-Elf", "Elf", "Dark Elf"]
-d["species"]["muscular"] 	= ["Orc", "Beastman", "Half-Orc", "Human", "Dwarf"]
-d["species"]["big"]				= ["Giant", "Ogre", "Troll"]
+d["species"]["special"] 	= ["Avian", "Celestial", "Sylvan", "Lizard", "Merman", "Demonic", "Demon", "Succubus", "Naga"]
+d["species"]["twisted"]		= ["Demonic", "Demon", "Lizard", "Demonic", "Succubus", "Orc", "Beastman", "Dark Elf", "Human"]
+d["species"]["muscular"] 	= ["Orc", "Beastman", "Half-Orc", "Human", "Dwarf", "Demon", "Demonic", "Lizard", "Naga"]
+d["species"]["dextrous"]  = ["Elf", "Human", "Dark Elf", "Wood Elf", "Lizard", "Halfling", "Demonic", "Succubus"]
+d["species"]["noble"]     = ["Avian", "Celestial", "Lizard", "Naga", "Elf", "Dark Elf", "Human", "Dwarf"]
+d["species"]["smart"]     = ["Dwarf", "Human", "Celestial", "Lizard", "Demon", "Succubus", "Elf", "Dark Elf", "Gnome", "Halfling"]
+#d["species"]["big"]				= ["Giant", "Ogre", "Troll"]
 d["species"]["small"] 		= ["Goblin", "Gnome", "Dwarf", "Kobold", "Halfling"]
+d["species"]["sneaky"]    = ["Goblin", "Halfling","Half-Elf", "Elf", "Dark Elf"]
+d["species"]["primitive"] = ["Goblin", "Ogre", "Troll", "Orc", "Beastman", "Wood Elf", "Sylvan", "Lizard"]
+d["species"]["rightous"]  = ["Human", "Celestial", "Beastman", "Dwarf", "Halfling", "Elf"]
 
-s["generic"]["pattern"] = ["{species} {profession}"]
+d["pattern"] = ["{species[rightous]} {profession[rightous]}", "{species[primitive]} {profession[primitive]}", "{species[smart]} {profession[civilian]}",
+								"{species[twisted]} {profession[twisted]}", "{species[dextrous]} {profession[ranged]}", "{species[sneaky]} {profession[sneaky]}",
+								"{species[muscular]} {profession[melee]}", "{species[noble]} {profession[noble]}", "{species[smart]} {profession[arcane]}"]
 
 # -----------------------------------------
 
 formatter = GenerativeFormatter(d)
 
 def generate():
-	faction = random.choice(list(s.keys()))
-	formatter.set_vocab(s[faction], d, s)
 	result = formatter.format("{pattern}")
 	return result
 
@@ -101,11 +60,7 @@ def get_context():
 	return "#Character"
 
 def count_permutations(*args):
-	i = 0
-	for faction in list(s.keys()):
-		formatter.set_vocab(s[faction], d, s)
-		i += formatter.count_permutations("{pattern}", *args)
-	return i
+	return formatter.count_permutations("{pattern}", *args)
 
 if __name__ == "__main__":
 	for i in range(0, 20):

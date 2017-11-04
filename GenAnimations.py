@@ -21,12 +21,12 @@ d["character"]["melee"]		= ["warrior", "berserker", "knight"]
 d["undead"] = ["zombie", "skeleton", "mummy", "lich", "ghost"]
 d["breath_weapon"] = ["fire-breathing", "ice-breathing", "acid-spewing"]
 d["specific_animation"] = ["{breath_weapon} creature", "{undead} rising out of it's grave"]
-d["bolt_element"] = ["fiery", "ice", "lightning", "necrotic"]
-d["attunment"] = ["holy", "elemental", ["unholy", "dark", "corrupted"]]
+d["bolt_element"] = ["Fiery", "Ice", "Lightning", "Necrotic"]
+d["attunment"] = ["Holy", "Elemental", ["Unholy", "Dark", "Corrupted"]]
 d["magic_spell"] = 	["Cleansing Light", "Burning Inferno", "Portal", "Teleportation",
 										"Summon Demon", "Protective Aura", "Petrifying Gaze", "Dust Devil",
-										"{bolt_element.capitalize()} Bolt", "{bolt_element.capitalize()} Blast", "{bolt_element.capitalize()} Barrage", "Telekinesis",
-										"Tsunami", "Summon Undead", "{attunment.capitalize()} Healing"]
+										"{bolt_element} Bolt", "{bolt_element} Blast", "{bolt_element} Barrage", "Telekinesis",
+										"Tsunami", "Summon Undead", "{attunment} Healing"]
 d["attack_desc"] = ["precise attack", "fast attack", "brutal attack", "barrage"]
 
 d["character_detail"] = ["heavily armored {character}", "{character} armed with {weapon}", "{characteristic} {character}"]
@@ -52,5 +52,5 @@ def get_context():
 	return "#Animation"
 
 if __name__ == "__main__":
-	for i in range(0, 10):
+	for i in range(0, 20):
 		print(generate())

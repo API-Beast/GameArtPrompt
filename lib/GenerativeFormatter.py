@@ -98,11 +98,9 @@ class GenerativeFormatter(Formatter):
 		debug_msg(indent, format)
 		return 1
 
-
-	def expand(self, items, *args, **kwargs):
+	def expand(self, item, *args, **kwargs):
 		result = []
-		for item in items:
-			result.append(self.get_field(item, args, kwargs))
+		result.append(self.get_field(item, args, kwargs))
 		return result
 
 	def get_field(self, field_name, args, kwargs):
