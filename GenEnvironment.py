@@ -6,14 +6,14 @@ from lib.GenerativeFormatter import GenerativeFormatter
 d = {}
 
 d["flora_style"] 			= ["Alien", "Dark", "Glowing", "Rotting", "Dense", "Frozen", "Voluminous", "Oozing"]
-d["flora_prop"] 			= ["Tuft of Grass", "Mushrooms", "Flowers", "Plants", "Tree", "Bush", "Tree Stump", "Vines"]
+d["flora_prop"] 			= ["Mushroom", "Flower", "Plant", "Tree", "Bush", "Tree Stump", "Vines"]
 d["rock_style"] 			= ["Solid", "Collapsing", "Cracked", "Overgrown", "Crystaline", "Mossy", "Limestone", "Sandstone", "Ice", "Oozing"]
 d["rock_prop"] 				= ["Rock", "Boulder", "Spire", "Cliff", "Peak", "Crag", "Arch", "Cave Entrance"]
-d["structure_style"]	= ["Collapsing", "Crystaline", "Brick", "Macabre", "Rune Etched", "Stone set", "Limestone", "Obsidian", "Sandstone", "Wooden", "Orderly", "Steel", "Magi-Tech", "Primitive", "Ancient", "Mystic", "Ornamental", "Overgrown"]
+d["structure_style"]	= ["Collapsing", "Crystaline", "Brick", "Rune Etched", "Stone set", "Limestone", "Obsidian", "Sandstone", "Wooden", "Orderly", "Bone", "Steel", "Magi-Tech", "Primitive", "Ancient", "Mystic", "Ornamental", "Overgrown"]
 d["structure"]   			= [["Column", "Pillar"], "Wall", "Floor", "Window", "Door", "Roof", "Gate", "Staircase", "Wall", "Balcony", "Bridge", "Railing"]
 d["style"]						= ["Ornamental", "Rotting", "[none]"]
 d["container"]				=	["Crate", "Pottery", "Barrels", "Chest", "Bag"]
-d["special"]					= ["Stalactite", "Rubble", "Riverside", "Wine Barrel", "Fruit Tree", "Berry Bush", "{style} Tombstone"]
+d["special"]					= ["Stalactite", "Rubble", "Riverside", "Wine Barrel", "Fruit Tree", "Berry Bush", "{style} Tombstone", "Anvil", "Furnace"]
 d["patches"]					= ["Patch of Grass", "Patch of Leaves", "Patch of Undergrowth", "Patch of Grain", "{Cracked?} Patch of Stone", "{Cracked?} Sandstone Patch"]
 d["profession"]				= ["Alchemists", "Artists", "Sculptors", "Researchers", "Writers", "Engineers", "Tailors", "Woodworkers", "Architects"]
 d["merchant"]					= ["Alchemist", "Blacksmith", "Goldsmith", "Runesmith", "Artificer", "Grocer", "Tailor", "Potter"]

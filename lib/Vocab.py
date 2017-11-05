@@ -1,4 +1,6 @@
 
+from importlib import import_module
+
 class Vocab(dict):
 	def lookup(self, key):
 		keys = key.split(".")
@@ -21,6 +23,11 @@ class Vocab(dict):
 		unique_list = []
 		[unique_list.append(obj) for obj in retVal if obj not in unique_list]
 		return unique_list
+
+	def include(self, path):
+		module = import_module(path)
+		module.write_to(self)
+
 
 	def copy(self):
 		return Vocab(dict.copy(self))
@@ -55,7 +62,7 @@ def merge_vocab(first, second):
 		result = first.copy()
 		for key, val in second.items():
 			if key in result:
-				result[key] = merge_words(result[key], second[key])
+				result[key] = merge_vocab(result[key], second[key])
 			else:
 				result[key] = second[key]
 		return Vocab(result)

@@ -12,12 +12,12 @@ d["settlement_type"] = ["Forest", "Mountain", "Harbour", "Primitive", "Destroyed
 d["raw_metal"]			 = ["Iron", "Copper", "Gold", "Silver", "Mythril"]
 d["mined_materials"] = d.merge_sets("raw_metal", ["Coal", "Crystal"])
 
-d["pattern"] = 	["{climate} Mountain", "{climate} Stone Formation", "{forest_type} Forest", "{climate} Riverbed", "{climate} Lake"]
-d["pattern"] += ["{climate|style} Fortress", "{climate|settlement_type} Village"]
-d["pattern"] += ["{climate|settlement_type} House", "{climate|settlement_type} Town"]
+d["pattern"] = 	["{climate} Mountain", "{climate} Hill", "{climate} Stone Formation", "{forest_type} Forest", "{climate} Riverbed", "Oasis", "{climate} Lake"]
+d["pattern"] += ["{climate|style} Fortress", "{climate|style} Encampment", "{climate|settlement_type} Village"]
+d["pattern"] += ["{climate|settlement_type} House", "{climate|settlement_type} Town", "{climate} Dungeon Entrance"]
 d["pattern"] += [["Storehouse", "Barracks", "Training Ground", "Lumberers Camp", "{mined_materials} Mine"]]
 d["pattern"] += [["Church", "Cathedral", "{style} Gatehouse", "{style} Wall", "Workshop"]]
-d["pattern"] += [["Tent", "Stables", "{style|Corrupted*} Shrine"]]
+d["pattern"] += [["Farm", "Stables", "{style|Corrupted*} Shrine", "Colossal Statue", "Colossal Dragon Skeleton"]]
 d["pattern"] += [["Alchemists Lab", "Blacksmith", "Bowmakers Shop", "Enchanters Atelier"]]
 
 formatter = GenerativeFormatter(d)
